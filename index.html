@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101510">
+  <meta name="description" content="CASE FILE 47 — Shadows of Wadi Al-Sir. An interactive cinematic mystery. Chapter One: The Unlit Window.">
+  <title>CASE FILE 47 — Shadows of Wadi Al-Sir | Chapter One</title>
+  <style>
+    :root{color-scheme:dark;--ink:#f2eee3;--muted:#a9aa9d;--gold:#d5b978;--rust:#a86a52;--night:#0b100e;--glass:rgba(13,19,17,.74);--edge:rgba(213,185,120,.25);--serif:Georgia,'Times New Roman',serif;--sans:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--night);color:var(--ink);font-family:var(--sans);min-height:100vh;overflow-x:hidden}button,a{font:inherit}button{color:inherit}a{color:inherit;text-decoration:none}::selection{background:var(--gold);color:#17150f}
+    .scene{position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(6,10,9,.15),rgba(7,11,10,.66) 58%,#0b100e 100%),radial-gradient(ellipse at 68% 28%,rgba(168,106,82,.12),transparent 40%),linear-gradient(120deg,#171d19,#080c0b 65%);overflow:hidden}
+    .scene:before{content:"";position:absolute;inset:-10%;opacity:.25;background:repeating-linear-gradient(112deg,transparent 0 90px,rgba(191,191,167,.04) 92px,transparent 94px 180px);transform:scale(1.2);animation:drift 45s linear infinite}
+    .moon{position:absolute;width:clamp(5rem,12vw,10rem);aspect-ratio:1;border-radius:50%;right:15%;top:12%;background:radial-gradient(circle at 35% 35%,#e0d6b3,#9e947a 50%,rgba(91,89,72,.25) 75%,transparent 77%);opacity:.72;filter:blur(.3px);box-shadow:0 0 90px rgba(211,194,146,.1)}
+    .ridge{position:absolute;bottom:13%;left:-10%;width:120%;height:42%;background:linear-gradient(160deg,#222923,#101713 54%,#080d0b);clip-path:polygon(0 60%,10% 47%,18% 53%,29% 27%,36% 38%,48% 16%,56% 30%,68% 7%,74% 21%,86% 28%,94% 18%,100% 34%,100% 100%,0 100%);opacity:.86}
+    .ridge.back{bottom:24%;height:35%;opacity:.35;filter:blur(2px);transform:scaleX(-1)}
+    .grain{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E")}
+    .bar{position:relative;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.15rem clamp(1rem,5vw,4rem);border-bottom:1px solid rgba(255,255,255,.08);background:rgba(8,12,10,.42);backdrop-filter:blur(12px)}
+    .brand{display:flex;align-items:center;gap:.8rem;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;font-weight:700}.seal{width:37px;height:37px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-family:var(--serif);font-size:1.1rem;box-shadow:0 0 20px rgba(213,185,120,.12)}
+    .bar-actions{display:flex;align-items:center;gap:.65rem}.lang,.sound{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);border-radius:999px;padding:.55rem .85rem;color:var(--muted);font-size:.72rem;cursor:pointer;transition:.2s}.lang:hover,.sound:hover{border-color:var(--gold);color:var(--ink)}
+    main{position:relative;z-index:2}.hero{min-height:calc(100svh - 70px);display:flex;align-items:center;padding:clamp(3.2rem,8vw,7.5rem) clamp(1.2rem,10vw,9rem) 4rem}.hero-copy{width:min(720px,100%);animation:rise 1.1s both}.eyebrow{display:flex;align-items:center;gap:.7rem;color:var(--gold);font-size:.69rem;letter-spacing:.25em;text-transform:uppercase}.eyebrow:before{content:"";width:36px;height:1px;background:var(--gold)}
+    h1{font-family:var(--serif);font-size:clamp(3.25rem,8.6vw,7.8rem);font-weight:400;line-height:.93;letter-spacing:-.055em;margin:1.35rem 0 1rem;max-width:900px;text-shadow:0 4px 35px rgba(0,0,0,.4)}h1 span{display:block;color:#d9c99f;font-style:italic}.subtitle{font-family:var(--serif);font-size:clamp(1.2rem,2.4vw,1.8rem);color:#d7d4c8;margin:0 0 1.25rem}.intro{max-width:580px;color:#c3c4b8;font-size:clamp(.95rem,1.4vw,1.08rem);line-height:1.9}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}.primary,.ghost{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;padding:.92rem 1.2rem;border-radius:3px;letter-spacing:.12em;text-transform:uppercase;font-size:.69rem;font-weight:700;cursor:pointer;transition:transform .25s,background .25s,border-color .25s}.primary{background:var(--gold);color:#171710;border:1px solid var(--gold)}.ghost{background:rgba(255,255,255,.03);color:var(--ink);border:1px solid rgba(255,255,255,.2)}.primary:hover,.ghost:hover{transform:translateY(-3px)}.ghost:hover{border-color:var(--gold)}.scroll-note{margin-top:4.3rem;display:flex;align-items:center;gap:.8rem;color:rgba(238,238,222,.55);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase}.scroll-line{width:42px;height:1px;background:var(--gold);transform-origin:left;animation:pulse 2s infinite}
+    .section{padding:clamp(4rem,9vw,8rem) clamp(1rem,9vw,8rem);background:linear-gradient(180deg,rgba(10,15,13,.4),rgba(10,15,13,.92))}.section-inner{max-width:1050px;margin:auto}.section-kicker{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-size:.67rem}.section h2{font:400 clamp(2.2rem,5vw,4rem)/1.04 var(--serif);margin:.7rem 0 1.2rem}.section p{color:#c5c6ba;line-height:1.9;max-width:700px}.file-card{margin-top:2rem;border:1px solid var(--edge);background:var(--glass);backdrop-filter:blur(14px);padding:clamp(1.2rem,4vw,2.3rem);display:grid;grid-template-columns:1fr auto;gap:1rem 2rem;align-items:center;box-shadow:0 20px 65px rgba(0,0,0,.25)}.file-id{font:1.2rem var(--serif);color:var(--gold)}.file-meta{font-size:.75rem;line-height:1.8;color:var(--muted)}.stamp{border:1px solid rgba(168,106,82,.7);color:#c78d73;padding:.5rem .7rem;transform:rotate(-7deg);font-size:.65rem;letter-spacing:.17em;text-transform:uppercase}
+    .clue-grid{margin-top:2.2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.clue{min-height:155px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.025);padding:1.2rem;cursor:pointer;text-align:left;transition:transform .25s,border-color .25s,background .25s}.clue:hover,.clue[aria-expanded=true]{transform:translateY(-4px);border-color:var(--edge);background:rgba(213,185,120,.06)}.clue-num{color:var(--gold);font-size:.65rem;letter-spacing:.18em}.clue h3{font:1.25rem var(--serif);margin:.7rem 0 .45rem}.clue p{font-size:.83rem;line-height:1.65;margin:0;color:#aeb2a7}.reveal-text{display:none;margin-top:.75rem!important;color:#e3ddca!important}.clue[aria-expanded=true] .reveal-text{display:block;animation:rise .35s both}
+    .decision{margin-top:4rem;padding:clamp(1.5rem,5vw,3rem);border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);text-align:center}.decision h2{font:400 clamp(2rem,4vw,3.2rem) var(--serif)}.choices{display:flex;justify-content:center;flex-wrap:wrap;gap:.8rem;margin-top:1.4rem}.choice{background:transparent;color:var(--ink);border:1px solid rgba(255,255,255,.18);padding:.8rem 1rem;cursor:pointer;letter-spacing:.08em;font-size:.72rem;transition:.2s}.choice:hover,.choice.selected{border-color:var(--gold);color:var(--gold);background:rgba(213,185,120,.06)}.response{min-height:2rem;margin:1.2rem auto 0;color:var(--gold);font:1.1rem var(--serif)}
+    footer{position:relative;z-index:2;padding:1.5rem clamp(1rem,5vw,4rem);display:flex;justify-content:space-between;gap:1rem;border-top:1px solid rgba(255,255,255,.08);color:rgba(238,238,222,.45);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase}
+    [dir="rtl"] .eyebrow:before{order:2}[dir="rtl"] .clue{text-align:right}[dir="rtl"] .scroll-line{transform-origin:right}
+    @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@keyframes drift{from{transform:translate3d(-1%,0,0) scale(1.2)}to{transform:translate3d(1%,0,0) scale(1.2)}}@keyframes pulse{0%,100%{transform:scaleX(.65);opacity:.5}50%{transform:scaleX(1);opacity:1}}
+    @media(max-width:700px){.hero{min-height:calc(92svh - 60px);padding:4rem 1.25rem}.moon{right:7%;top:12%}.clue-grid{grid-template-columns:1fr}.file-card{grid-template-columns:1fr}.stamp{justify-self:start}.scroll-note{margin-top:3rem}.bar{padding:.8rem 1rem}.brand{font-size:.62rem;letter-spacing:.08em}footer{flex-direction:column;text-align:center}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <div class="scene" aria-hidden="true"><div class="moon"></div><div class="ridge back"></div><div class="ridge"></div></div>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="bar">
+    <a class="brand" href="#top" aria-label="Case File 47 home"><span class="seal">47</span><span>Case File 47 <span style="color:var(--gold)">/</span> Wadi Al-Sir</span></a>
+    <div class="bar-actions"><button class="sound" id="soundToggle" type="button" aria-pressed="false">Sound: off</button><button class="lang" id="languageToggle" type="button" aria-label="Switch language">العربية</button></div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow" data-en="A CINEMATIC MYSTERY" data-ar="لغز سينمائي">A CINEMATIC MYSTERY</div>
+        <h1 data-en="Shadows of<span>Wadi Al-Sir</span>" data-ar="ظلال<span>وادي السير</span>">Shadows of<span>Wadi Al-Sir</span></h1>
+        <div class="subtitle" data-en="Chapter One — The Unlit Window" data-ar="الفصل الأول — النافذة المعتمة">Chapter One — The Unlit Window</div>
+        <p class="intro" data-en="At 02:17, a light appeared in the old observatory—dark for twenty years. By dawn, a sealed case had vanished, and the valley was keeping its own counsel. Your investigation begins here." data-ar="عند الساعة 02:17، أضاءت نافذة المرصد القديم المغلق منذ عشرين عاماً. ومع الفجر، اختفى ملف مختوم، وبدا أن الوادي يخفي أسراره. يبدأ تحقيقك من هنا.">At 02:17, a light appeared in the old observatory—dark for twenty years. By dawn, a sealed case had vanished, and the valley was keeping its own counsel. Your investigation begins here.</p>
+        <div class="hero-actions"><a class="primary" href="#chapter" data-en="Enter the case" data-ar="ابدأ التحقيق">Enter the case <span aria-hidden="true">↘</span></a><a class="ghost" href="#evidence" data-en="View evidence" data-ar="عرض الأدلة">View evidence</a></div>
+        <div class="scroll-note"><span class="scroll-line"></span><span data-en="Scroll to investigate" data-ar="مرّر لمتابعة التحقيق">Scroll to investigate</span></div>
+      </div>
+    </section>
+    <section class="section" id="chapter">
+      <div class="section-inner">
+        <div class="section-kicker" data-en="01 / INCIDENT REPORT" data-ar="01 / تقرير الحادثة">01 / INCIDENT REPORT</div>
+        <h2 data-en="The valley remembers." data-ar="الوادي لا ينسى.">The valley remembers.</h2>
+        <p data-en="The observatory stands above Wadi Al-Sir, its copper dome split by years of dust and silence. The caretaker insists no one entered. Yet fresh mud marked the stairwell, and a single page was left beneath the locked archive door." data-ar="يقف المرصد فوق وادي السير، وقبته النحاسية مثقلة بالغبار والصمت. يؤكد الحارس أن أحداً لم يدخل. لكن آثار طين حديثة ظهرت على الدرج، وتركت ورقة واحدة تحت باب الأرشيف المغلق.">The observatory stands above Wadi Al-Sir, its copper dome split by years of dust and silence. The caretaker insists no one entered. Yet fresh mud marked the stairwell, and a single page was left beneath the locked archive door.</p>
+        <div class="file-card"><div><div class="file-id">CF-47 · FIELD NOTE 001</div><div class="file-meta" data-en="LOCATION: WADI AL-SIR OBSERVATORY<br>TIME LOG: 02:17 AM<br>STATUS: ARCHIVE ACCESS UNCONFIRMED" data-ar="الموقع: مرصد وادي السير<br>التوقيت: 02:17 بعد منتصف الليل<br>الحالة: دخول الأرشيف غير مؤكد">LOCATION: WADI AL-SIR OBSERVATORY<br>TIME LOG: 02:17 AM<br>STATUS: ARCHIVE ACCESS UNCONFIRMED</div></div><div class="stamp" data-en="RESTRICTED" data-ar="مقيّد">RESTRICTED</div></div>
+        <div id="evidence" class="clue-grid" aria-label="Evidence files">
+          <button class="clue" type="button" aria-expanded="false"><span class="clue-num">EVIDENCE 01</span><h3 data-en="A brass key" data-ar="مفتاح نحاسي">A brass key</h3><p data-en="Found beneath the eastern stair." data-ar="عُثر عليه أسفل الدرج الشرقي.">Found beneath the eastern stair.</p><p class="reveal-text" data-en="Its teeth carry fresh wax. The archive lock was not picked—it was opened, then resealed." data-ar="تحمل أسنانه شمعاً حديثاً. لم يُكسر قفل الأرشيف؛ فُتح ثم أُعيد إغلاقه.">Its teeth carry fresh wax. The archive lock was not picked—it was opened, then resealed.</p></button>
+          <button class="clue" type="button" aria-expanded="false"><span class="clue-num">EVIDENCE 02</span><h3 data-en="The torn page" data-ar="الورقة الممزقة">The torn page</h3><p data-en="One line survives in the margin." data-ar="نجا سطر واحد على الهامش.">One line survives in the margin.</p><p class="reveal-text" data-en="“When the second shadow falls, do not follow the first.” The handwriting matches no archive record." data-ar="«حين يسقط الظل الثاني، لا تتبع الأ��ل». لا تطابق الكتابة أي سجل في الأرشيف.">“When the second shadow falls, do not follow the first.” The handwriting matches no archive record.</p></button>
+          <button class="clue" type="button" aria-expanded="false"><span class="clue-num">EVIDENCE 03</span><h3 data-en="The lantern signal" data-ar="إشارة الفانوس">The lantern signal</h3><p data-en="Three flashes from the ridge at 02:17." data-ar="ثلاث ومضات من التلة عند 02:17.">Three flashes from the ridge at 02:17.</p><p class="reveal-text" data-en="The old observatory code reads: “The witness is already inside.” No one admits to sending it." data-ar="تقول شيفرة المرصد القديمة: «الشاهد في الداخل بالفعل». لا يعترف أحد بإرسالها.">The old observatory code reads: “The witness is already inside.” No one admits to sending it.</p></button>
+        </div>
+        <div class="decision">
+          <div class="section-kicker" data-en="YOUR FIRST LEAD" data-ar="خيطك الأول">YOUR FIRST LEAD</div>
+          <h2 data-en="Where do you look next?" data-ar="إلى أين تتجه الآن؟">Where do you look next?</h2>
+          <div class="choices"><button class="choice" data-response-en="The archive door gives a soft click from the other side." data-response-ar="صدر عن باب الأرشيف طقطقة خافتة من الجهة الأخرى." data-en="The archive" data-ar="الأرشيف">The archive</button><button class="choice" data-response-en="A lantern answers from the ridge—one flash this time." data-response-ar="أجابك فانوس من التلة بومضة واحدة هذه المرة." data-en="The ridge" data-ar="التلة">The ridge</button><button class="choice" data-response-en="The caretaker's log ends with tonight's date, written yesterday." data-response-ar="ينتهي سجل الحارس بتاريخ الليلة، وقد كُتب بالأمس." data-en="The caretaker" data-ar="الحارس">The caretaker</button></div>
+          <p class="response" id="response" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><span>CASE FILE 47 — SHADOWS OF WADI AL-SIR</span><span data-en="CHAPTER ONE · THE INVESTIGATION CONTINUES" data-ar="الفصل الأول · التحقيق مستمر">CHAPTER ONE · THE INVESTIGATION CONTINUES</span></footer>
+  <script>
+    const languageToggle = document.getElementById('languageToggle');
+    let language = 'en';
+    languageToggle.addEventListener('click', () => {
+      language = language === 'en' ? 'ar' : 'en';
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-en][data-ar]').forEach((el) => { el.innerHTML = el.dataset[language]; });
+      document.querySelectorAll('.choice').forEach((el) => { el.textContent = el.dataset[language]; });
+      languageToggle.textContent = language === 'en' ? 'العربية' : 'English';
+      const selected = document.querySelector('.choice.selected');
+      if (selected) document.getElementById('response').textContent = selected.dataset['response' + (language === 'en' ? 'En' : 'Ar')];
+    });
+    document.querySelectorAll('.clue').forEach((clue) => clue.addEventListener('click', () => {
+      const expanded = clue.getAttribute('aria-expanded') === 'true';
+      clue.setAttribute('aria-expanded', String(!expanded));
+    }));
+    document.querySelectorAll('.choice').forEach((choice) => choice.addEventListener('click', () => {
+      document.querySelectorAll('.choice').forEach((item) => item.classList.remove('selected'));
+      choice.classList.add('selected');
+      document.getElementById('response').textContent = choice.dataset['response' + (language === 'en' ? 'En' : 'Ar')];
+    }));
+    const soundToggle = document.getElementById('soundToggle');
+    let audioContext;
+    soundToggle.addEventListener('click', () => {
+      const enabled = soundToggle.getAttribute('aria-pressed') !== 'true';
+      soundToggle.setAttribute('aria-pressed', String(enabled));
+      soundToggle.textContent = `Sound: ${enabled ? 'on' : 'off'}`;
+      if (!enabled) return;
+      try {
+        audioContext ??= new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        oscillator.type = 'sine'; oscillator.frequency.value = 58;
+        gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.018, audioContext.currentTime + 0.3);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 2.4);
+        oscillator.connect(gain); gain.connect(audioContext.destination); oscillator.start(); oscillator.stop(audioContext.currentTime + 2.5);
+      } catch (_) { soundToggle.textContent = 'Sound unavailable'; }
+    });
+  </script>
+</body>
+</html>
